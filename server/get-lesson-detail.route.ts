@@ -16,6 +16,11 @@ export function findLessonDetail(req: Request, res: Response) {
 
   const lessonIndex = lessons.findIndex(lesson => lesson.seqNo == lessonSeqNo);
 
+  if (lessonIndex === -1) {
+    res.status(404).send('Lesson not found');
+    return;
+  }
+
   const lesson = lessons[lessonIndex];
 
   lesson['first'] = (lessonIndex == 0);
